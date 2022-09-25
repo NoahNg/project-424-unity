@@ -16,7 +16,7 @@ namespace GleyTrafficSystem
                 case TrafficLightsColor.Yellow:
                     SetLight(false, redLightObjects, name);
                     SetLight(true, yellowLightObjects, name);
-                    SetLight(true, greenLightObjects, name);
+                    SetLight(false, greenLightObjects, name);
                     break;
                 case TrafficLightsColor.Green:
                     SetLight(false, redLightObjects, name);

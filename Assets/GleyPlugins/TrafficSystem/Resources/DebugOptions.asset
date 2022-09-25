@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dee86a1dde50364fb4b2a27344026f5, type: 3}
   m_Name: DebugOptions
   m_EditorClassIdentifier: 
-  debug: 0
+  debug: 1
   debugSpeed: 0
   debugAI: 0
   debugIntersections: 0
-  debugWaypoints: 0
+  debugWaypoints: 1
   debugDisabledWaypoints: 0
   stopIntersectionUpdate: 0
   drawBodyForces: 0

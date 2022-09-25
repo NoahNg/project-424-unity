@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - TrafficLight
+  - Blockage
+  - Car
+  - Green Light
   layers:
   - Default
   - TransparentFX
@@ -15,13 +19,13 @@ TagManager:
   - 
   - Vehicles
   - SteeringScreen
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Road
+  - Traffic
+  - Building
+  - Obstacles
+  - Player
+  - Blockage
+  - Car
   - 
   - 
   - 

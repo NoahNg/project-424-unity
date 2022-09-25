@@ -19,6 +19,7 @@ namespace GleyTrafficSystem
         private bool yellowLight;
         private bool stopUpdate;
         public bool hasPedestrians;
+        private float timer = 0;
         private TrafficLightsBehaviour trafficLightsBehaviour;
         private TrafficLightsBehaviour TrafficLightsBehaviour
         {
@@ -123,12 +124,18 @@ namespace GleyTrafficSystem
                 {
                     if (carsInIntersection.Count == 0 || exitWaypoints.Count == 0)
                     {
+                        //Debug.Log(timer);
                         ChangeCurrentRoadColors(currentRoad, TrafficLightsColor.Red);
-                        currentRoad++;
-                        currentRoad = GetValidValue(currentRoad);
-                        ChangeCurrentRoadColors(currentRoad, TrafficLightsColor.Green);
-                        yellowLight = false;
-                        currentTime = realtimeSinceStartup;
+                        timer++;
+                        if (timer > 3000)
+                        {
+                            currentRoad++;
+                            currentRoad = GetValidValue(currentRoad);
+                            ChangeCurrentRoadColors(currentRoad, TrafficLightsColor.Green);
+                            yellowLight = false;
+                            currentTime = realtimeSinceStartup;
+                            timer = 0;
+                        }
                         ApplyColorChanges();
                     }
                 }
