@@ -112,6 +112,7 @@ namespace GleyTrafficSystem
             {
                 if (realtimeSinceStartup - currentTime > greenLightTime)
                 {
+                    Debug.Log("Yellow light");
                     ChangeCurrentRoadColors(currentRoad, TrafficLightsColor.Yellow);
                     ApplyColorChanges();
                     yellowLight = true;
@@ -122,21 +123,23 @@ namespace GleyTrafficSystem
             {
                 if (realtimeSinceStartup - currentTime > yellowLightTime)
                 {
+                    ChangeCurrentRoadColors(currentRoad, TrafficLightsColor.Red);
+                    timer++;
+                    Debug.Log(timer);
+                    if (timer > 500)
+                    {
+                        currentRoad++;
+                        currentRoad = GetValidValue(currentRoad);
+                        ChangeCurrentRoadColors(currentRoad, TrafficLightsColor.Green);
+                        yellowLight = false;
+                        currentTime = realtimeSinceStartup;
+                        timer = 0;
+                    }
+                    ApplyColorChanges();
                     if (carsInIntersection.Count == 0 || exitWaypoints.Count == 0)
                     {
                         //Debug.Log(timer);
-                        ChangeCurrentRoadColors(currentRoad, TrafficLightsColor.Red);
-                        timer++;
-                        if (timer > 3000)
-                        {
-                            currentRoad++;
-                            currentRoad = GetValidValue(currentRoad);
-                            ChangeCurrentRoadColors(currentRoad, TrafficLightsColor.Green);
-                            yellowLight = false;
-                            currentTime = realtimeSinceStartup;
-                            timer = 0;
-                        }
-                        ApplyColorChanges();
+                        
                     }
                 }
             }
