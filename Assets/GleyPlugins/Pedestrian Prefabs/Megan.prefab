@@ -2775,6 +2775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f48d6e6aca899a40bfd96b52076e2f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carHit: {fileID: 0}
 --- !u!195 &8631195981420378242
 NavMeshAgent:
   m_ObjectHideFlags: 0
