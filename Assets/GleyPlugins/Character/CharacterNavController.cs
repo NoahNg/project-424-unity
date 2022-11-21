@@ -23,6 +23,7 @@ public class CharacterNavController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Pedestrians can go when all the lights are red
         if (BlockageController.canGo == true && agent.isStopped == true)
         {
             agent.isStopped = false;
@@ -39,18 +40,21 @@ public class CharacterNavController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        //collide with a blockage
         if (collision.gameObject.CompareTag("Blockage") || collision.gameObject.CompareTag("Green Light"))
         {
+            //if one the lights are green, and the AI is entering the intersection (count == 0)
             if (collision.gameObject.CompareTag("Blockage") && count == 0)
             {
+                //then stop the AI
                 agent.isStopped = true;
                 animator.SetFloat("Vertical", 0);
             }
         }
 
+        //die if being hit by cars
         if (collision.gameObject.CompareTag("Car"))
         {
-            //Debug.Log("Car");
             agent.enabled = false;
             this.gameObject.GetComponent<BoxCollider>().enabled = false;
             Destroy(this.gameObject, 4f);
@@ -61,10 +65,14 @@ public class CharacterNavController : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-
+        //this block of code determines whether the AI is entering the intersection, or leaving it
+        //whenever the AI collide with a blockage, no matter the tag, count will go up by 1
         if (collision.gameObject.CompareTag("Blockage") || collision.gameObject.CompareTag("Green Light"))
         {
             count++;
+
+            //if count == 1: entering the intersection
+            //if count == 2: leaving the intersection 
             if (count == 2)
             {
                 count = 0;
@@ -73,6 +81,8 @@ public class CharacterNavController : MonoBehaviour
         }
         
     }
+
+    //set the destination for the pedestrians
     void UpdateDestination()
     {
         target = GameController.instance.targets[waypointIndex].position;
@@ -80,6 +90,7 @@ public class CharacterNavController : MonoBehaviour
         animator.SetFloat("Vertical", !agent.isStopped ? 1 : 0);
     }
 
+    //set the next way point for the pedestrians to go to
     void IterateWaypointIndex()
     {
         waypointIndex = Random.Range(0, GameController.instance.targets.Length);

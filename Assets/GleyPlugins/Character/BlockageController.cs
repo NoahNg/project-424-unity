@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class BlockageController : MonoBehaviour
 {
-    public GameObject[] redlights;
+    public GameObject[] redlights; //this object array includes all the red lights of the traffic lights
     public static bool canGo = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
+        //run through the array of all red light objects
         for (int i = 0; i < redlights.Length; i++)
         {
+            //if not all the red lights are active, then pedestrians can't cross
            if (!redlights[i].activeInHierarchy)
             {
                 //canGo = false;
@@ -24,7 +21,7 @@ public class BlockageController : MonoBehaviour
                 canGo = false;
                 break;
             } 
-           else //canGo = true;
+           else 
             {
                 gameObject.tag = "Green Light";
                 canGo=true;

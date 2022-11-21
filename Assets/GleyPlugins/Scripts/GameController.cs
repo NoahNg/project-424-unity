@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //spawn pedestrians at the start of the simulation
         SpawnPedestrians(numOfPedestrians);
         
     }
@@ -29,6 +29,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //respawn dead pedestrian
         if (deadPedestrian > 0)
         {
             reSpawnPedestrian();
@@ -36,6 +37,7 @@ public class GameController : MonoBehaviour
         }
     }
 
+    //function to spawn pedestrians to one of the spawnpoints
     void SpawnPedestrians(int num)
     {
         for (int i = 0; i < num; i++)
@@ -47,6 +49,7 @@ public class GameController : MonoBehaviour
         }
     }
 
+    //respawn a pedestrian randomly on the map after being hit
     void reSpawnPedestrian()
     {
         int spawnPoint_num = Random.Range(0, spawnPoints.Length);
